@@ -25,6 +25,7 @@ package com.akexorcist.localizationactivity.core;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 
 import java.util.Locale;
 
@@ -36,12 +37,12 @@ public class LanguageSetting {
     private static final String KEY_LANGUAGE = "key_language";
     private static Locale DEFAULT_LANGUAGE = Locale.ENGLISH;
 
-    public static void setDefaultLanguage(Locale locale) {
-        DEFAULT_LANGUAGE = locale;
-    }
-
     public static Locale getDefaultLanguage() {
         return DEFAULT_LANGUAGE;
+    }
+
+    public static void setDefaultLanguage(Locale locale) {
+        DEFAULT_LANGUAGE = locale;
     }
 
     public static void setLanguage(Context context, Locale locale) {
@@ -61,7 +62,7 @@ public class LanguageSetting {
         } else if (language.length == 2) {
             locale = new Locale(language[0], language[1].toUpperCase());
         } else {
-            locale = DEFAULT_LANGUAGE;
+            locale = new Locale(Resources.getSystem().getConfiguration().locale.getLanguage());
         }
         return locale;
     }
