@@ -35,7 +35,7 @@ import java.util.Locale;
 public class LanguageSetting {
     private static final String PREFERENCE_LANGUAGE = "pref_language";
     private static final String KEY_LANGUAGE = "key_language";
-    private static Locale DEFAULT_LANGUAGE = Locale.ENGLISH;
+    private static Locale DEFAULT_LANGUAGE = new Locale(Resources.getSystem().getConfiguration().locale.getLanguage());
 
     public static Locale getDefaultLanguage() {
         return DEFAULT_LANGUAGE;
@@ -62,7 +62,7 @@ public class LanguageSetting {
         } else if (language.length == 2) {
             locale = new Locale(language[0], language[1].toUpperCase());
         } else {
-            locale = new Locale(Resources.getSystem().getConfiguration().locale.getLanguage());
+            locale = DEFAULT_LANGUAGE;
         }
         return locale;
     }
